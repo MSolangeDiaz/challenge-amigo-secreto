@@ -1,42 +1,17 @@
 let listaAmigos = [];
 let maxAmigos = 10;
 
-// Mostrar lista en pantalla
-function mostrarLista() {
-    let ul = document.getElementById('listaAmigos');
-    ul.innerHTML = '';
-    listaAmigos.forEach(nombre => {
-        let li = document.createElement('li');
-        li.textContent = nombre;
-        ul.appendChild(li);
-    });
-}
-
-// Mostrar resultado en pantalla
-function mostrarResultado(resultado) {
-    let ul = document.getElementById('resultado');
-    ul.innerHTML = '';
-    const li = document.createElement('li');
-    li.textContent = `El amigo sorteado es: ${resultado}`;
-    ul.appendChild(li);
-}
-
-// Limpiar la caja de texto
-function limpiarCaja() {
-    document.querySelector('#amigo').value = '';
-}
-
 // Agregar amigo a la lista
 function agregarAmigo() {
     let nombre = document.getElementById('amigo').value;
 
-    // Validar que no esté vacío
+    // Validar que no esté vacío el campo 
     if (nombre === '') {
         alert('Debes ingresar un nombre para añadir a la lista de sorteados.');
         return;
     }
 
-    // Si el nombre ya existe, pedir apellido
+    // Si el nombre ya existe, pedir apellido para identificarlo
     if (listaAmigos.includes(nombre)) {
         let apellido = prompt("Ese nombre ya existe, por favor ingresa un apellido para diferenciarlo");
         if (apellido && apellido.trim() !== '') {
@@ -46,8 +21,24 @@ function agregarAmigo() {
             return;
         }
     }
-
-    // Agregar si no se superó el máximo
+    
+ // Mostrar lista en pantalla
+function mostrarLista() {
+    let ul = document.getElementById('listaAmigos');
+    ul.innerHTML = '';
+    listaAmigos.forEach(nombre => {
+        let li = document.createElement('li');
+        li.textContent = nombre;
+        ul.appendChild(li);
+    });
+}   
+    
+// Limpiar la caja de texto
+function limpiarCaja() {
+    document.querySelector('#amigo').value = '';
+}
+    
+    // Agregar si no se superó el máximo de diez amigos
     if (listaAmigos.length < maxAmigos) {
         listaAmigos.push(nombre);
         mostrarLista();
@@ -57,7 +48,7 @@ function agregarAmigo() {
     }
 }
 
-// Sortear un amigo al azar,tiene que haber al menos 
+// Sortear un amigo al azar,tiene que haber al menos dos
 function sortearAmigo() {
     if (listaAmigos.length < 2) {
         alert('Debes ingresar al menos 2 amigos para poder hacer el sorteo.');
@@ -68,6 +59,16 @@ function sortearAmigo() {
     const ganador = listaAmigos[indice];
 
     mostrarResultado(ganador);
+}
+
+
+// Mostrar resultado en pantalla
+function mostrarResultado(resultado) {
+    let ul = document.getElementById('resultado');
+    ul.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = `El amigo sorteado es: ${resultado}`;
+    ul.appendChild(li);
 }
 
 
