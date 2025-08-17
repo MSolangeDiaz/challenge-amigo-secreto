@@ -21,8 +21,18 @@ function agregarAmigo() {
             return;
         }
     }
-    
- // Mostrar lista en pantalla
+    // Agregar si no se superó el máximo de diez amigos
+    if (listaAmigos.length < maxAmigos) {
+        listaAmigos.push(nombre);
+        mostrarLista();
+        limpiarCaja();
+    } else {
+        alert('Ya ingresaste el máximo de 10 amigos.');
+    }
+}
+
+ 
+// Mostrar lista en pantalla
 function mostrarLista() {
     let ul = document.getElementById('listaAmigos');
     ul.innerHTML = '';
@@ -38,15 +48,6 @@ function limpiarCaja() {
     document.querySelector('#amigo').value = '';
 }
     
-    // Agregar si no se superó el máximo de diez amigos
-    if (listaAmigos.length < maxAmigos) {
-        listaAmigos.push(nombre);
-        mostrarLista();
-        limpiarCaja();
-    } else {
-        alert('Ya ingresaste el máximo de 10 amigos.');
-    }
-}
 
 // Sortear un amigo al azar,tiene que haber al menos dos
 function sortearAmigo() {
